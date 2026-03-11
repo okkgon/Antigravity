@@ -1,0 +1,13 @@
+{
+  "name": "sap.sd.salesorder",
+  "version": "1.0.0",
+  "description": "Sales Order App",
+  "private": true,
+  "scripts": {
+    "start": "ui5 serve --config=ui5.yaml --open index.html",
+    "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist"
+  },
+  "dependencies": {
+    "@ui5/cli": "^3.0.0"
+  }
+}

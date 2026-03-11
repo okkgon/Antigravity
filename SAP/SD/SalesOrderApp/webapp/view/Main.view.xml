@@ -1,0 +1,132 @@
+<mvc:View
+    controllerName="sap.sd.salesorder.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:table="sap.ui.table"
+    displayBlock="true">
+    
+    <f:DynamicPage id="page">
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>appTitle}"/>
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <!-- DynamicPage Header (FilterBar) -->
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+                <fb:FilterBar id="filterBar" search=".onSearch" useToolbar="false" showGoOnFB="true">
+                    <fb:filterGroupItems>
+                        <fb:FilterGroupItem groupName="G1" name="A" label="Order ID" partOfCurrentVariant="true" visibleInFilterBar="true">
+                            <fb:control>
+                                <Input id="fOrderID" placeholder="e.g. SO00000001"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                        <fb:FilterGroupItem groupName="G1" name="B" label="Sales Org" partOfCurrentVariant="true" visibleInFilterBar="true">
+                            <fb:control>
+                                <Input id="fSalesOrg" placeholder="e.g. 1000"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                        <fb:FilterGroupItem groupName="G1" name="C" label="Channel" partOfCurrentVariant="true" visibleInFilterBar="true">
+                            <fb:control>
+                                <Input id="fChannel" placeholder="e.g. 10"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                        <fb:FilterGroupItem groupName="G1" name="D" label="Region" partOfCurrentVariant="true" visibleInFilterBar="true">
+                            <fb:control>
+                                <Input id="fRegion" placeholder="e.g. US"/>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                    </fb:filterGroupItems>
+                </fb:FilterBar>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <!-- DynamicPage Content (Grid Table) -->
+        <f:content>
+            <table:Table
+                id="salesOrderTable"
+                rows="{/SalesOrders}"
+                selectionMode="None"
+                visibleRowCount="10"
+                rowActionCount="1"
+                ariaLabelledBy="title">
+                <table:extension>
+                    <OverflowToolbar>
+                        <Title id="title" text="Orders"/>
+                        <ToolbarSpacer/>
+                        <Button icon="sap-icon://refresh" tooltip="Refresh" press=".onRefresh"/>
+                    </OverflowToolbar>
+                </table:extension>
+                <table:columns>
+                    <table:Column width="11rem">
+                        <Label text="Order ID" />
+                        <table:template>
+                            <Link text="{SalesOrderID}" press=".onNavigationPress"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column width="15rem">
+                        <Label text="Customer Name" />
+                        <table:template>
+                            <Text text="{CustomerName}" wrapping="false" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column width="6rem">
+                        <Label text="Sales Org" />
+                        <table:template>
+                            <Text text="{SalesOrg}" wrapping="false" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column width="6rem">
+                        <Label text="Channel" />
+                        <table:template>
+                            <Text text="{Channel}" wrapping="false" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column width="6rem">
+                        <Label text="Region" />
+                        <table:template>
+                            <Text text="{Region}" wrapping="false" />
+                        </table:template>
+                    </table:Column>
+                    <table:Column width="11rem" hAlign="End">
+                        <Label text="Total Amount" />
+                        <table:template>
+                            <ObjectNumber
+                                number="{
+                                    parts:[{path:'TotalAmount'},{path:'Currency'}],
+                                    type: 'sap.ui.model.type.Currency',
+                                    formatOptions: {showMeasure: false}
+                                }"
+                                unit="{Currency}"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column width="11rem">
+                        <Label text="Status" />
+                        <table:template>
+                            <ObjectStatus text="{Status}" state="{= ${Status} === 'Approved' ? 'Success' : 'Warning' }"/>
+                        </table:template>
+                    </table:Column>
+                    <table:Column width="11rem">
+                        <Label text="Creation Date" />
+                        <table:template>
+                            <Text text="{CreationDate}" wrapping="false" />
+                        </table:template>
+                    </table:Column>
+                </table:columns>
+                <table:rowActionTemplate>
+                    <table:RowAction>
+                        <table:items>
+                            <table:RowActionItem type="Navigation" press=".onNavigationPress"></table:RowActionItem>
+                        </table:items>
+                    </table:RowAction>
+                </table:rowActionTemplate>
+            </table:Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

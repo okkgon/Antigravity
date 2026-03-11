@@ -1,0 +1,152 @@
+<mvc:View
+    controllerName="sap.sd.salesorder.controller.Object"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.uxap"
+    xmlns:m="sap.m"
+    displayBlock="true">
+    
+    <ObjectPageLayout id="ObjectPageLayout"
+        showTitleInHeaderContent="true"
+        alwaysShowContentHeader="false"
+        preserveHeaderStateOnScroll="false"
+        headerContentPinnable="true"
+        isChildPage="true">
+
+        <headerTitle>
+            <ObjectPageDynamicHeaderTitle>
+                <expandedHeading>
+                    <m:HBox wrap="Wrap" fitContainer="true" alignItems="Center">
+                        <m:Title text="{SalesOrderID}" wrapping="true" class="sapUiSmallMarginEnd"/>
+                        <m:ObjectStatus text="{Status}" state="{= ${Status} === 'Approved' ? 'Success' : 'Warning' }"/>
+                    </m:HBox>
+                </expandedHeading>
+                <snappedHeading>
+                    <m:HBox wrap="Wrap" fitContainer="true" alignItems="Center">
+                        <m:Title text="{SalesOrderID}" wrapping="true" class="sapUiSmallMarginEnd"/>
+                        <m:ObjectStatus text="{Status}" state="{= ${Status} === 'Approved' ? 'Success' : 'Warning' }"/>
+                    </m:HBox>
+                </snappedHeading>
+                <navigationActions>
+                    <m:Button icon="sap-icon://nav-back" press=".onNavBack" type="Transparent"/>
+                </navigationActions>
+                <expandedContent>
+                    <m:Text text="{CustomerName}"/>
+                </expandedContent>
+            </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+
+        <headerContent>
+            <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+                <m:VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+                    <m:Title text="Customer Information" class="sapUiTinyMarginBottom" />
+                    <m:Text text="{CustomerName}"/>
+                    <m:Text text="Org: {SalesOrg} | Ch: {Channel} | Reg: {Region}"/>
+                </m:VBox>
+                <m:VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+                    <m:Title text="Order Details" class="sapUiTinyMarginBottom" />
+                    <m:Label text="Status:" />
+                    <m:ObjectStatus text="{Status}" state="{= ${Status} === 'Approved' ? 'Success' : 'Warning' }"/>
+                    <m:Label text="Date:" class="sapUiTinyMarginTop" />
+                    <m:Text text="{CreationDate}"/>
+                </m:VBox>
+                <m:VBox class="sapUiLargeMarginEnd sapUiSmallMarginBottom">
+                    <m:Title text="Summary" class="sapUiTinyMarginBottom" />
+                    <m:ObjectNumber
+                        number="{
+                            parts:[{path:'TotalAmount'},{path:'Currency'}],
+                            type: 'sap.ui.model.type.Currency',
+                            formatOptions: {showMeasure: false}
+                        }"
+                        unit="{Currency}"
+                        state="Information" />
+                </m:VBox>
+            </m:FlexBox>
+        </headerContent>
+
+        <sections>
+            <ObjectPageSection title="Item" id="itemsSection">
+                <subSections>
+                    <ObjectPageSubSection id="itemsSubSection">
+                        <blocks>
+                            <m:Table id="itemsTable"
+                                items="{
+                                    path: 'Items',
+                                    templateShareable: true
+                                }"
+                                noDataText="No Items Found">
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text="Item Number"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Material"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Description"/>
+                                    </m:Column>
+                                    <m:Column hAlign="End">
+                                        <m:Text text="Quantity"/>
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:Text text="{ItemNumber}"/>
+                                            <m:ObjectIdentifier title="{Material}"/>
+                                            <m:Text text="{Description}"/>
+                                            <m:ObjectNumber number="{Quantity}" unit="{Unit}"/>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <ObjectPageSection title="Shipping" id="shippingSection">
+                <subSections>
+                    <ObjectPageSubSection id="shippingSubSection">
+                        <blocks>
+                            <m:Table id="deliveriesTable"
+                                items="{
+                                    path: 'Deliveries',
+                                    templateShareable: true
+                                }"
+                                noDataText="No Shipping Data Found">
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text="Delivery No"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Item Number"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Status"/>
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="Date"/>
+                                    </m:Column>
+                                    <m:Column hAlign="End">
+                                        <m:Text text="Quantity"/>
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:ObjectIdentifier title="{DeliveryNo}"/>
+                                            <m:Text text="{ItemNumber}"/>
+                                            <m:ObjectStatus text="{Status}" state="{= ${Status} === 'Delivered' ? 'Success' : (${Status} === 'Shipped' ? 'Warning' : 'Information') }"/>
+                                            <m:Text text="{Date}"/>
+                                            <m:ObjectNumber number="{Quantity}" unit="{Unit}"/>
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+        </sections>
+    </ObjectPageLayout>
+</mvc:View>

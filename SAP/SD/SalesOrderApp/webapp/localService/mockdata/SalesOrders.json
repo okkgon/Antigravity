@@ -1,0 +1,154 @@
+{
+    "SalesOrders": [
+        {
+            "SalesOrderID": "SO00000001",
+            "CustomerName": "Tech Innovation Inc.",
+            "SalesOrg": "1000",
+            "Channel": "10",
+            "Region": "US",
+            "TotalAmount": 15000.00,
+            "Currency": "USD",
+            "Status": "Approved",
+            "CreationDate": "2023-11-01",
+            "Items": [
+                {
+                    "ItemNumber": "000010",
+                    "Material": "MAT-0101",
+                    "Description": "Server Rack Type A",
+                    "Quantity": 5,
+                    "Unit": "PC"
+                },
+                {
+                    "ItemNumber": "000020",
+                    "Material": "MAT-0102",
+                    "Description": "High-Speed Switch",
+                    "Quantity": 2,
+                    "Unit": "PC"
+                }
+            ],
+            "Deliveries": [
+                {
+                    "DeliveryNo": "800000001",
+                    "ItemNumber": "000010",
+                    "Status": "Shipped",
+                    "Date": "2023-11-05",
+                    "Quantity": 5,
+                    "Unit": "PC"
+                },
+                {
+                    "DeliveryNo": "800000002",
+                    "ItemNumber": "000020",
+                    "Status": "Processing",
+                    "Date": "2023-11-06",
+                    "Quantity": 2,
+                    "Unit": "PC"
+                }
+            ]
+        },
+        {
+            "SalesOrderID": "SO00000002",
+            "CustomerName": "Global Logistics LLC",
+            "SalesOrg": "2000",
+            "Channel": "20",
+            "Region": "DE",
+            "TotalAmount": 8500.50,
+            "Currency": "EUR",
+            "Status": "Pending",
+            "CreationDate": "2023-11-05",
+            "Items": [
+                {
+                    "ItemNumber": "000010",
+                    "Material": "MAT-0205",
+                    "Description": "Logistics Software License",
+                    "Quantity": 1,
+                    "Unit": "EA"
+                }
+            ],
+            "Deliveries": [
+                {
+                    "DeliveryNo": "800000003",
+                    "ItemNumber": "000010",
+                    "Status": "Pending",
+                    "Date": "2023-11-10",
+                    "Quantity": 1,
+                    "Unit": "EA"
+                }
+            ]
+        },
+        {
+            "SalesOrderID": "SO00000003",
+            "CustomerName": "Retail Solutions",
+            "SalesOrg": "1000",
+            "Channel": "10",
+            "Region": "UK",
+            "TotalAmount": 420.00,
+            "Currency": "USD",
+            "Status": "Rejected",
+            "CreationDate": "2023-11-10",
+            "Items": [
+                {
+                    "ItemNumber": "000010",
+                    "Material": "MAT-0311",
+                    "Description": "Barcode Scanner",
+                    "Quantity": 3,
+                    "Unit": "PC"
+                }
+            ],
+            "Deliveries": [
+                {
+                    "DeliveryNo": "800000004",
+                    "ItemNumber": "000010",
+                    "Status": "Cancelled",
+                    "Date": "2023-11-11",
+                    "Quantity": 3,
+                    "Unit": "PC"
+                }
+            ]
+        },
+        {
+            "SalesOrderID": "SO00000004",
+            "CustomerName": "Future Dynamics",
+            "SalesOrg": "3000",
+            "Channel": "30",
+            "Region": "KR",
+            "TotalAmount": 27500.00,
+            "Currency": "GBP",
+            "Status": "Approved",
+            "CreationDate": "2023-11-12",
+            "Items": [
+                {
+                    "ItemNumber": "000010",
+                    "Material": "MAT-0401",
+                    "Description": "Industrial Robot Arm",
+                    "Quantity": 1,
+                    "Unit": "PC"
+                },
+                {
+                    "ItemNumber": "000020",
+                    "Material": "MAT-0402",
+                    "Description": "Calibration Kit",
+                    "Quantity": 1,
+                    "Unit": "SET"
+                }
+            ],
+            "Deliveries": [
+                {
+                    "DeliveryNo": "800000005",
+                    "ItemNumber": "000010",
+                    "Status": "Delivered",
+                    "Date": "2023-11-15",
+                    "Quantity": 1,
+                    "Unit": "PC"
+                },
+                {
+                    "DeliveryNo": "800000006",
+                    "ItemNumber": "000020",
+                    "Status": "Delivered",
+                    "Date": "2023-11-15",
+                    "Quantity": 1,
+                    "Unit": "SET"
+                }
+            ]
+        }
+    ]
+}
